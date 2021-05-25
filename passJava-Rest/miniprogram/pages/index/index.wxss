@@ -64,7 +64,8 @@ page {
   border-radius: 20rpx;
   background-color: #FFFFFF;
   box-shadow:0px 6px 16px 0px rgba(207,207,207,0.54);
-  margin:30rpx auto
+  margin:30rpx auto;
+  /* background-image: url('http://120.77.203.191:8090/upload/2021/05/cat-bee86f670f0240199cd29d46b426acf9.jpg'); */
 }
 
 .swiper-label {

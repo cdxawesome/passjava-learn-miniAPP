@@ -1,18 +1,18 @@
 <!--index.wxml-->
 <view class="index-wrapper">
   
- <view class="banner-wrapper" wx:if="{{!isLoadingBanner}}">
+ <view class="banner-wrapper" wx:if="{{isLoadingBanner}}">
     <view class="banner-background">
       <view class="row-layout">
         <view class="clock-position">
           <image src="../../images/index/clock.png"></image>
         </view>
-        <text class='clock-text'>距离4月1号考试剩余：{{clock}} </text>
+        <text class='clock-text'>距离6月10号房子到期：{{clock}} </text>
       </view>
-      <view class="banner-list">
+      <view class="banner-list-loading">
         <swiper circular="true"
-          autoplay="true" interval="5000" duration="500" bindchange="swiperChange" previous-margin='30rpx' style='height: 300rpx'>
-          <block wx:for="{{banners}}" wx:key="{{item}}">
+          autoplay="true" interval="5000" duration="500" bindchange="swiperChange" style='height: 300rpx'>
+          <block wx:for="{{mockBanner.item}}" wx:key="{{item}}">
             <swiper-item>
               <text class="swiper-label">{{item.content}}</text>
               <image src="{{item.bannerUrl}}" class="slide-image" data-item="{{item}}" bindtap='toBannerPage'/>
@@ -22,7 +22,7 @@
       </view>
     </view>
     <view class="dots">
-      <block wx:for="{{banners}}" wx:key="{{item}}">
+      <block wx:for="{{mockBanner.item}}" wx:key="{{item}}">
         <view class="dot" wx:if="{{index != swiperCurrent}}">
           <image src='../../images/index/index_rectangle.png'></image>
         </view>
@@ -33,19 +33,19 @@
     </view>
   </view>
 
-  <view class="banner-wrapper" wx:if="{{isLoadingBanner}}">
+  <!-- <view class="banner-wrapper" wx:if="{{isLoadingBanner}}">
     <view class="banner-background">
       <view class="row-layout">
         <view class="clock-position">
           <image src="../../images/index/clock.png"></image>
         </view>
-        <text class='clock-text'>距离考试剩余：{{clock}} </text>
+        <text class='clock-text'>距离房子到期：{{clock}} </text>
       </view>
       <view class="banner-list-loading"></view>
     </view>
-  </view>
+  </view> -->
 
-  <view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class='fastRecharge icon-box' bindtap='gotoJavaBasic' open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo">
       <image src="../../images/index/index_answer.png" class="iconImage"></image>
@@ -64,7 +64,7 @@
     </view>
   </view>
 
-  <view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+  <view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class='fastRecharge icon-box'>
       <image class="iconImage icon-image-loading common-color"></image>
     </view>
@@ -79,14 +79,14 @@
     </view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle">Java基础</view>
     <view class="icon-title commonIconTitle">JVM</view>
     <view class="icon-title commonIconTitle">Spring</view>
     <view class="icon-title commonIconTitle">多线程</view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
@@ -94,7 +94,7 @@
   </view>
 
   <!-- 第二行图片 -->
-  <view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class='fastRecharge icon-box' bindtap='gotoMessageQueue' open-type="getUserInfo" 
       bindgetuserinfo="onGetUserInfo">
       <image src="../../images/index/icon_mq.png" class="iconImage"></image>
@@ -112,7 +112,7 @@
       <image src="../../images/index/icon_earth.png" class="iconImage"></image>
     </view>
   </view>
-<view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+<view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class='fastRecharge icon-box'>
       <image class="iconImage icon-image-loading common-color"></image>
     </view>
@@ -127,14 +127,14 @@
     </view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle">消息队列</view>
     <view class="icon-title commonIconTitle">Zookeeper</view>
     <view class="icon-title commonIconTitle">日志</view>
     <view class="icon-title commonIconTitle">网络</view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
@@ -142,7 +142,7 @@
   </view>
 
 <!-- 第三行图片 -->
-  <view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class='fastRecharge icon-box' bindtap='gotoAlgorithm'
       bindgetuserinfo="onGetUserInfo">
       <image src="../../images/index/icon-algorithm.png" class="iconImage"></image>
@@ -161,7 +161,7 @@
     </view>
   </view>
 
- <view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+ <view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class='fastRecharge icon-box'>
       <image class="iconImage icon-image-loading common-color"></image>
     </view>
@@ -176,14 +176,14 @@
     </view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle">Java算法</view>
     <view class="icon-title commonIconTitle">数据结构</view>
     <view class="icon-title commonIconTitle">云计算</view>
     <view class="icon-title commonIconTitle">微服务</view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
@@ -191,7 +191,7 @@
   </view>
 
   <!-- 第四行图片 -->
-  <view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class='fastRecharge icon-box' bindtap='gotoCache'
       bindgetuserinfo="onGetUserInfo">
       <image src="../../images/index/icon_cache2.png" class="iconImage"></image>
@@ -202,7 +202,7 @@
     </view>
   </view>
 
-<view class="icons-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+<view class="icons-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class='fastRecharge icon-box'>
       <image class="iconImage icon-image-loading common-color"></image>
     </view>
@@ -211,23 +211,23 @@
     </view>
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle">缓存</view>
     <view class="icon-title commonIconTitle">大数据</view>
 
   </view>
 
-  <view class="icons-title-wrapper row-layout" wx:if="{{isLoadingBanner}}">
+  <view class="icons-title-wrapper row-layout" wx:if="{{!isLoadingBanner}}">
     <view class="icon-title fastRechargeTitle icon-title-loading common-color"></view>
     <view class="icon-title commonIconTitle icon-title-loading common-color"></view>
 
   </view>
 
   <!-- 总结 -->
-  <view class='title-text'>总结</view>
+  <!-- <view class='title-text'>总结</view>
   <view>
     <component-list items="{{ summaryList }}" bind:btnClick="btnClick" ></component-list>
-  </view>
+  </view> -->
 
   <view class="baby-news-wrapper" wx:if="{{experiences.length > 0}}">
     <view class="row-layout baby-benifit">

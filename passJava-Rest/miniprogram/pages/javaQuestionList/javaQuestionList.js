@@ -21,14 +21,27 @@ Page({
   onLoad(e) {
     this.setData({
       type: e.type,
-      title: e.title
+      title: e.title,
     })
     wx.setNavigationBarTitle({
       title: e.title,
     })
+    this.getTypeID()
   },
   
   onShow: function () {
+    this.getJavaQuestionsList()
+  },
+
+  onShareAppMessage() {
+    // return custom share data when user share.
+  },
+
+  /**
+   * 获取类型的id
+   */
+  getTypeID()
+  {
     wx.request({
       url: baseUrl+'/question/type/list',
       data: {"page":"1","limit":"10"},
@@ -42,12 +55,6 @@ Page({
         }
       }
     })
-    // console.log(this.data.typeID)
-    this.getJavaQuestionsList()
-  },
-
-  onShareAppMessage() {
-    // return custom share data when user share.
   },
 
   getJavaQuestionsList: function () {

@@ -8,7 +8,7 @@ const env = require('../../env')
 Page({
   data: {
     clock: [],
-    isLoadingBanner: false,
+    isLoadingBanner: true,
     imageUrl: config.url.images,
     mockBanner: mock.banner,
     swiperCurrent: 0,
@@ -61,7 +61,7 @@ Page({
 
     var interval = setInterval(function () {
       //将时间传如 调用
-      let examTime = '2020/04/01 00:00:00';
+      let examTime = '2021/06/10 00:00:00';
       var clock = timeUtil.calculateTime(examTime.replace(/-/g, '/'));
 
       this.setData({//正常倒计时        
